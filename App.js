@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, SafeAreaView, Text, View, StatusBar} from 'react-native';
+import {StyleSheet, SafeAreaView, Text, StatusBar} from 'react-native';
 import Auth from './src/components/Auth';
 import firebase from './src/utils/firebase';
 import 'firebase/auth';
