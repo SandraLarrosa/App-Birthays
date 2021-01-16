@@ -20,6 +20,7 @@ export default function RegisterForm(props) {
         placeholder="Correo electrónico"
         placeholderTextColor="#969696"
         style={styles.input}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
