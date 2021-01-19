@@ -6,6 +6,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import {validateEmail} from '../utils/validation';
 
 export default function RegisterForm(props) {
   const {changeForm} = props;
@@ -14,10 +15,28 @@ export default function RegisterForm(props) {
     password: '',
     repeatPassword: '',
   });
+  const [formError, setFormError] = useState({});
 
   const register = () => {
-    console.log('Registrando');
-    console.log(formData);
+    let errors = {};
+    if (!formData.email && !formData.password && !formData.repeatPassword) {
+      if (!formData.email) errors.email = true;
+      if (!formData.password) errors.password = true;
+      if (!formData.repeatPassword) errors.repeatPassword = true;
+      console.log(formData);
+    } else if (!validateEmail(formData.email)) {
+      errors.email = true;
+      console.log(errors);
+    } else if (formData.password !== formData.repeatPassword) {
+      errors.password = true;
+      errors.repeatPassword = true;
+    } else if (formData.password.length < 6) {
+      errors.password = true;
+      errors.repeatPassword = true;
+    } else {
+      console.log('Formulario correcto');
+    }
+    setFormError(errors);
   };
 
   return (
@@ -25,12 +44,12 @@ export default function RegisterForm(props) {
       <TextInput
         placeholder="Correo electrónico"
         placeholderTextColor="#969696"
-        style={styles.input}
+        style={[styles.input, formError.email && styles.error]}
         keyboardType="email-address"
         onChange={(e) => setFormData({...formData, email: e.nativeEvent.text})}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, formError.password && styles.error]}
         placeholder="Contraseña"
         placeholderTextColor="#969696"
         secureTextEntry={true}
@@ -39,7 +58,7 @@ export default function RegisterForm(props) {
         }
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, formError.repeatPassword && styles.error]}
         placeholder="Repetir Contraseña"
         placeholderTextColor="#969696"
         secureTextEntry={true}
@@ -50,6 +69,7 @@ export default function RegisterForm(props) {
       <TouchableOpacity onPress={register}>
         <Text style={styles.btnText}>Regístrate</Text>
       </TouchableOpacity>
+
       <View style={styles.login}>
         <TouchableOpacity onPress={changeForm}>
           <Text style={styles.btnText}>Iniciar Sesión</Text>
@@ -75,6 +95,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#1E3040',
+  },
+  error: {
+    borderColor: 'white',
+    backgroundColor: '#a9294f',
   },
   login: {
     flex: 1,
