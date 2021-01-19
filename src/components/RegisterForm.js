@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,9 +9,15 @@ import {
 
 export default function RegisterForm(props) {
   const {changeForm} = props;
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
 
   const register = () => {
     console.log('Registrando');
+    console.log(formData);
   };
 
   return (
@@ -21,18 +27,25 @@ export default function RegisterForm(props) {
         placeholderTextColor="#969696"
         style={styles.input}
         keyboardType="email-address"
+        onChange={(e) => setFormData({...formData, email: e.nativeEvent.text})}
       />
       <TextInput
         style={styles.input}
         placeholder="Contraseña"
         placeholderTextColor="#969696"
         secureTextEntry={true}
+        onChange={(e) =>
+          setFormData({...formData, password: e.nativeEvent.text})
+        }
       />
       <TextInput
         style={styles.input}
         placeholder="Repetir Contraseña"
         placeholderTextColor="#969696"
         secureTextEntry={true}
+        onChange={(e) =>
+          setFormData({...formData, repeatPassword: e.nativeEvent.text})
+        }
       />
       <TouchableOpacity onPress={register}>
         <Text style={styles.btnText}>Regístrate</Text>
