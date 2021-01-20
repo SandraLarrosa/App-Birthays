@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import {validateEmail} from '../utils/validation';
+import firebase from '../utils/firebase';
 
 export default function RegisterForm(props) {
   const {changeForm} = props;
@@ -28,8 +29,23 @@ export default function RegisterForm(props) {
       password: passwordIsWrong || passWordsAreWrong,
       repeatPassword: passwordIsWrong || passWordsAreWrong,
     };
-
     setFormError(errors);
+
+    if (!errors.email && !errors.password && !errors.repeatPassword) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(formData.email, formData.password)
+        .then(() => {
+          console.log('cuenta creada');
+        })
+        .catch(() => {
+          setFormError({
+            email: true,
+            password: true,
+            repeatPassword: true,
+          });
+        });
+    }
   };
 
   return (
