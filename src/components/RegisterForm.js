@@ -18,24 +18,17 @@ export default function RegisterForm(props) {
   const [formError, setFormError] = useState({});
 
   const register = () => {
-    let errors = {};
-    if (!formData.email && !formData.password && !formData.repeatPassword) {
-      if (!formData.email) errors.email = true;
-      if (!formData.password) errors.password = true;
-      if (!formData.repeatPassword) errors.repeatPassword = true;
-      console.log(formData);
-    } else if (!validateEmail(formData.email)) {
-      errors.email = true;
-      console.log(errors);
-    } else if (formData.password !== formData.repeatPassword) {
-      errors.password = true;
-      errors.repeatPassword = true;
-    } else if (formData.password.length < 6) {
-      errors.password = true;
-      errors.repeatPassword = true;
-    } else {
-      console.log('Formulario correcto');
-    }
+    let emailIsWrong = !formData.email || !validateEmail(formData.email);
+    let passwordIsWrong = !formData.password || formData.password.length < 6;
+    let passWordsAreWrong =
+      !formData.repeatPassword || formData.password !== formData.repeatPassword;
+
+    let errors = {
+      email: emailIsWrong,
+      password: passwordIsWrong || passWordsAreWrong,
+      repeatPassword: passwordIsWrong || passWordsAreWrong,
+    };
+
     setFormError(errors);
   };
 
