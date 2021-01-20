@@ -12,10 +12,32 @@ import firebase from '../utils/firebase';
 export default function LoginForm(props) {
   const {changeForm} = props;
   const [formData, setFormData] = useState({email: '', password: ''});
+  const [formError, setFormError] = useState({});
 
   const login = () => {
-    console.log('Iniciando sesión');
-    console.log(formData);
+    let emailIsWrong = !formData.email || !validateEmail(formData.email);
+    let passwordIsWrong = !formData.password;
+
+    let errors = {
+      email: emailIsWrong,
+      password: passwordIsWrong,
+    };
+    setFormError(errors);
+
+    if (!errors.email && !errors.password) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(formData.email, formData.password)
+        .then(() => {
+          console.log('Ok');
+        })
+        .catch(() => {
+          setFormError({
+            email: true,
+            password: true,
+          });
+        });
+    }
   };
 
   const onChange = (e, type) => {
@@ -24,14 +46,14 @@ export default function LoginForm(props) {
   return (
     <>
       <TextInput
-        style={styles.input}
+        style={[styles.input, formError.email && styles.error]}
         placeholder="Correo electrónico"
         placeholderTextColor="#969696"
         keyboardType="email-address"
         onChange={(e) => onChange(e, 'email')}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, formError.password && styles.error]}
         placeholder="Contraseña"
         placeholderTextColor="#969696"
         secureTextEntry={true}
@@ -70,5 +92,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 30,
+  },
+  error: {
+    borderColor: 'white',
+    backgroundColor: '#a9294f',
   },
 });
