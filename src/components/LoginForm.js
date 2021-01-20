@@ -28,9 +28,6 @@ export default function LoginForm(props) {
       firebase
         .auth()
         .signInWithEmailAndPassword(formData.email, formData.password)
-        .then(() => {
-          console.log('Ok');
-        })
         .catch(() => {
           setFormError({
             email: true,
