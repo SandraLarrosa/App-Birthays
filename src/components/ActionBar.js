@@ -2,7 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import firebase from '../utils/firebase';
 
-export default function ActionBar() {
+export default function ActionBar(props) {
+  const {showList, setShowList} = props;
+
   const buttonLogOut = () => {
     firebase.auth().signOut();
   };
@@ -15,7 +17,9 @@ export default function ActionBar() {
         </Text>
       </View>
       <View style={styles.viewAdd}>
-        <Text style={styles.text}>Nueva Fecha</Text>
+        <Text style={styles.text} onPress={() => setShowList(!showList)}>
+          {showList ? 'Nueva Fecha' : 'Cancelar Fecha'}
+        </Text>
       </View>
     </View>
   );
