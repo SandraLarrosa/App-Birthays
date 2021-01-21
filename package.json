@@ -10,10 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.0.9",
     "firebase": "^8.2.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-keyboard-aware-scrollview": "^2.1.0"
+    "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-modal-datetime-picker": "^9.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
