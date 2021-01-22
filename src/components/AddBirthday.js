@@ -12,7 +12,12 @@ import 'moment/locale/es';
 
 export default function AddBirthday() {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    name: '',
+    lastName: '',
+    dateBirth: '',
+  });
+  const [formError, setFormError] = useState({});
 
   const hideDatePicker = () => {
     setIsDatePickerVisible(false);
@@ -36,25 +41,44 @@ export default function AddBirthday() {
   };
 
   const onSubmit = () => {
-    console.log(formData);
+    let nameIsWrong = !formData.name;
+    let lastNameIsWrong = !formData.lastName;
+    let dateIsWrong = !formData.dateBirth;
+
+    let errors = {
+      name: nameIsWrong,
+      lastName: lastNameIsWrong,
+      dateBirth: dateIsWrong,
+    };
+
+    setFormError(errors);
+
+    if (!errors.name && !errors.lastName && !errors.dateBirth) {
+      console.log('ok');
+    }
   };
 
   return (
     <>
       <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, formError.name && styles.error]}
           placeholder="Nombre"
           placeholderTextColor="#969696"
           onChange={(e) => onChange(e, 'name')}
         />
         <TextInput
-          style={styles.input}
+          style={[styles.input, formError.lastName && styles.error]}
           placeholder="Apellidos"
           placeholderTextColor="#969696"
           onChange={(e) => onChange(e, 'lastName')}
         />
-        <View style={[styles.input, styles.datePicker]}>
+        <View
+          style={[
+            styles.input,
+            styles.datePicker,
+            formError.dateBirth && styles.error,
+          ]}>
           <Text
             style={{
               color: formData.dateBirth ? 'white' : '#969696',
@@ -105,5 +129,9 @@ const styles = StyleSheet.create({
   addButton: {
     fontSize: 18,
     color: 'white',
+  },
+  error: {
+    borderColor: 'white',
+    backgroundColor: '#a9294f',
   },
 });
