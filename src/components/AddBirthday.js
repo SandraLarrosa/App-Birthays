@@ -1,16 +1,24 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import moment from 'moment';
+import 'moment/locale/es';
 
 export default function AddBirthday() {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+  const [formData, setFormData] = useState({});
+  console.log(formData);
 
   const hideDatePicker = () => {
     setIsDatePickerVisible(false);
   };
 
   const handlerConfirm = (date) => {
-    console.log(date);
+    const dateBirth = date;
+    dateBirth.setHours(0);
+    dateBirth.setMinutes(0);
+    dateBirth.setSeconds(0);
+    setFormData({...formData, dateBirth});
     hideDatePicker();
   };
 
@@ -32,8 +40,15 @@ export default function AddBirthday() {
           placeholderTextColor="#969696"
         />
         <View style={[styles.input, styles.datePicker]}>
-          <Text style={styles.textDate} onPress={showDatePicker}>
-            Fecha de Nacimiento
+          <Text
+            style={{
+              color: formData.dateBirth ? 'white' : '#969696',
+              fontSize: 18,
+            }}
+            onPress={showDatePicker}>
+            {formData.dateBirth
+              ? moment(formData.dateBirth).format('LL')
+              : 'Fecha de Nacimiento'}
           </Text>
         </View>
       </View>
@@ -68,9 +83,5 @@ const styles = StyleSheet.create({
   },
   datePicker: {
     justifyContent: 'center',
-  },
-  textDate: {
-    color: '#969696',
-    fontSize: 18,
   },
 });
