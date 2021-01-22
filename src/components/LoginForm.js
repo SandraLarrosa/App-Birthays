@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
 import {validateEmail} from '../utils/validation';
 import firebase from '../utils/firebase';
@@ -29,6 +30,7 @@ export default function LoginForm(props) {
         .auth()
         .signInWithEmailAndPassword(formData.email, formData.password)
         .catch(() => {
+          Alert.alert('Usuario no encontrado');
           setFormError({
             email: true,
             password: true,
