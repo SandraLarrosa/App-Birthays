@@ -11,6 +11,8 @@ if (!global.atob) global.atob = decode;
 
 LogBox.ignoreAllLogs(true);
 
+firebase.firestore().settings({experimentalForceLongPolling: true});
+
 export default function App() {
   const [user, setUser] = useState(undefined);
 
