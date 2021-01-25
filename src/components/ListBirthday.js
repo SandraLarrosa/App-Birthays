@@ -14,9 +14,11 @@ export default function ListBirthday(props) {
   const [showList, setShowList] = useState(true);
   const [birthday, setBirthday] = useState([]);
   const [pasatBirthday, setPasatBirthday] = useState([]);
+  const [reloadData, setReloadData] = useState(false);
 
   useEffect(() => {
     setBirthday([]);
+    setPasatBirthday([]);
     db.collection(user.uid)
       .orderBy('dateBirth', 'asc')
       .get()
@@ -29,7 +31,8 @@ export default function ListBirthday(props) {
         });
         formData(itemsArray);
       });
-  }, []);
+    setReloadData(false);
+  }, [reloadData]);
 
   const formData = (items) => {
     //Obtención de la fecha del día
@@ -78,7 +81,11 @@ export default function ListBirthday(props) {
           ))}
         </ScrollView>
       ) : (
-        <AddBirthday user={user} setShowList={setShowList} />
+        <AddBirthday
+          user={user}
+          setShowList={setShowList}
+          setReloadData={setReloadData}
+        />
       )}
       <ActionBar setShowList={setShowList} showList={showList} />
     </View>
