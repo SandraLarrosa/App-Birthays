@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import moment from 'moment';
 import ActionBar from './ActionBar';
 import AddBirthday from './AddBirthday';
 import firebase from '../utils/firebase';
@@ -11,8 +12,7 @@ export default function ListBirthday(props) {
   const {user} = props;
   const [showList, setShowList] = useState(true);
   const [birthday, setBirthday] = useState([]);
-
-  console.log(birthday);
+  const [pasatBirthday, setPasatBirthday] = useState([]);
 
   useEffect(() => {
     setBirthday([]);
@@ -26,9 +26,46 @@ export default function ListBirthday(props) {
           data.id = doc.id;
           itemsArray.push(data);
         });
-        setBirthday(itemsArray);
+        formData(itemsArray);
       });
   }, []);
+
+  const formData = (items) => {
+    //Obtención de la fecha del día
+    const currentDate = moment().set({
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0,
+    });
+
+    const birthdayTempArray = [];
+    const pasatBirthdayTempArray = [];
+
+    items.forEach((item) => {
+      //Iteramos todas las fechas que recibimos de la base de datos
+      const dateBirth = new Date(item.dateBirth.seconds * 1000);
+      const dateBirthday = moment(dateBirth);
+      const currentYear = moment().get('year');
+      dateBirthday.set({year: currentYear}); //formateo de fechas
+
+      const diffDate = currentDate.diff(dateBirthday, 'days'); //Diferencia entre los días con el actual.
+      const itemTemp = item;
+      itemTemp.dateBirth = dateBirthday;
+      itemTemp.days = diffDate;
+
+      if (diffDate <= 0) {
+        //Comparación de fechas
+        birthdayTempArray.push(itemTemp);
+      } else {
+        pasatBirthdayTempArray.push(itemTemp);
+      }
+    });
+    console.log('Estos son los próximos cumpleaños ', birthdayTempArray);
+    console.log('Estos son los cumpleaños pasados ', pasatBirthdayTempArray);
+    setBirthday(birthdayTempArray);
+    setPasatBirthday(pasatBirthdayTempArray);
+  };
 
   return (
     <View style={styles.container}>
