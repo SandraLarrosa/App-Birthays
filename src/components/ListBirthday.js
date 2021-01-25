@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import moment from 'moment';
 import ActionBar from './ActionBar';
 import AddBirthday from './AddBirthday';
 import firebase from '../utils/firebase';
 import 'firebase/firestore';
+import Birthday from './Birthday';
 
 const db = firebase.firestore(firebase);
 
@@ -61,8 +62,6 @@ export default function ListBirthday(props) {
         pasatBirthdayTempArray.push(itemTemp);
       }
     });
-    console.log('Estos son los próximos cumpleaños ', birthdayTempArray);
-    console.log('Estos son los cumpleaños pasados ', pasatBirthdayTempArray);
     setBirthday(birthdayTempArray);
     setPasatBirthday(pasatBirthdayTempArray);
   };
@@ -70,13 +69,14 @@ export default function ListBirthday(props) {
   return (
     <View style={styles.container}>
       {showList ? (
-        <>
-          <Text>List</Text>
-          <Text>List</Text>
-          <Text>List</Text>
-          <Text>List</Text>
-          <Text>List</Text>
-        </>
+        <ScrollView style={styles.scrollView}>
+          {birthday.map((item, index) => (
+            <Birthday key={index} birthday={item} />
+          ))}
+          {pasatBirthday.map((item, index) => (
+            <Birthday key={index} birthday={item} />
+          ))}
+        </ScrollView>
       ) : (
         <AddBirthday user={user} setShowList={setShowList} />
       )}
@@ -89,5 +89,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     height: '100%',
+  },
+  scrollView: {
+    marginBottom: 50,
+    width: '100%',
   },
 });
