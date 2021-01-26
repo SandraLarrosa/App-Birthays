@@ -99,7 +99,7 @@ export default function ListBirthday(props) {
       {showList ? (
         <>
           <ScrollView style={styles.scrollView}>
-            <Text>Cumpleaños: </Text>
+            <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
             {birthday.map((item, index) => (
               <Birthday
                 key={index}
@@ -107,7 +107,7 @@ export default function ListBirthday(props) {
                 deleteBirthday={deleteBirthday}
               />
             ))}
-            <Text>Cumpleaños pasados: </Text>
+            <Text style={styles.titleBirthdays}>Cumpleaños pasados: </Text>
             {pasatBirthday.map((item, index) => (
               <Birthday
                 key={index}
@@ -137,5 +137,12 @@ const styles = StyleSheet.create({
   scrollView: {
     marginBottom: 50,
     width: '100%',
+  },
+  titleBirthdays: {
+    color: 'white',
+    margin: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });
