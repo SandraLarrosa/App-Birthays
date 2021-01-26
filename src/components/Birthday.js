@@ -17,7 +17,11 @@ export default function Birthday(props) {
 
   const infoDay = () => {
     if (birthday.days === 0) {
-      Alert.alert('¡¡HOY CUMPLE AÑOS!!', `Felicita a ${birthday.name}`);
+      Alert.alert('¡¡HOY CUMPLE AÑOS!!', `Felicita a ${birthday.name}`, [
+        {
+          text: 'Gracias',
+        },
+      ]);
       return (
         <>
           <Image
