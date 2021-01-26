@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-  Image,
-} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import moment from 'moment';
 
 export default function Birthday(props) {
@@ -31,24 +24,27 @@ export default function Birthday(props) {
     }
   };
 
+  const styleCardBirthays = () => {
+    if (pasatBirthday) {
+      return styles.pasat;
+    }
+    if (todayBirthday) {
+      return styles.actual;
+    }
+    return styles.current;
+  };
+
   return (
     <TouchableOpacity
       onPress={() => deleteBirthday(birthday)}
-      style={[
-        styles.card,
-        pasatBirthday
-          ? styles.pasat
-          : todayBirthday
-          ? styles.actual
-          : styles.current,
-      ]}>
+      style={[styles.card, styleCardBirthays()]}>
       {todayBirthday && (
         <>
-          <Text style={styles.birthday}>¡CUMPLEAÑOS!</Text>
           <Image
             style={styles.logo}
             source={require('../assets/icon-gift.png')}
           />
+          <Text style={styles.birthday}>HOY ES EL CUMPLEAÑOS DE:</Text>
         </>
       )}
       <Text style={[styles.name, todayBirthday && styles.nameBirthday]}>
@@ -112,11 +108,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   nameBirthday: {
-    fontSize: 18,
+    fontSize: 20,
   },
   logo: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
   },
   birthday: {
     fontSize: 20,

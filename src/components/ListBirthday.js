@@ -17,7 +17,7 @@ export default function ListBirthday(props) {
   const [pasatBirthday, setPasatBirthday] = useState([]);
   const [reloadData, setReloadData] = useState(false);
 
-  let birthdayEmpty;
+  let listBirthdayEmpty;
   useEffect(() => {
     setBirthday([]);
     setPasatBirthday([]);
@@ -33,7 +33,7 @@ export default function ListBirthday(props) {
         });
         formData(itemsArray);
       });
-    birthdayEmpty = birthday.length === 0;
+    listBirthdayEmpty = birthday.length === 0;
     setReloadData(false);
   }, [reloadData]);
 
@@ -99,7 +99,7 @@ export default function ListBirthday(props) {
 
   return (
     <>
-      {birthdayEmpty ? (
+      {listBirthdayEmpty ? (
         <AddBirthday
           user={user}
           setShowList={setShowList}
