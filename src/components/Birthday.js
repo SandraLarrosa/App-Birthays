@@ -33,7 +33,7 @@ export default function Birthday(props) {
       <Text style={styles.name}>
         {birthday.name} {birthday.lastName}
       </Text>
-      {pasat ? <Text style={styles.days}>Pasado</Text> : infoDay()}
+      {pasat ? <Text style={styles.days}>Ya ha pasado</Text> : infoDay()}
     </TouchableOpacity>
   );
 }

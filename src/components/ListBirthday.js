@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, ScrollView, Alert} from 'react-native';
+import {StyleSheet, View, ScrollView, Alert, Text} from 'react-native';
 import moment from 'moment';
 import ActionBar from './ActionBar';
 import AddBirthday from './AddBirthday';
@@ -97,22 +97,26 @@ export default function ListBirthday(props) {
   return (
     <View style={styles.container}>
       {showList ? (
-        <ScrollView style={styles.scrollView}>
-          {birthday.map((item, index) => (
-            <Birthday
-              key={index}
-              birthday={item}
-              deleteBirthday={deleteBirthday}
-            />
-          ))}
-          {pasatBirthday.map((item, index) => (
-            <Birthday
-              key={index}
-              birthday={item}
-              deleteBirthday={deleteBirthday}
-            />
-          ))}
-        </ScrollView>
+        <>
+          <ScrollView style={styles.scrollView}>
+            <Text>Cumpleaños: </Text>
+            {birthday.map((item, index) => (
+              <Birthday
+                key={index}
+                birthday={item}
+                deleteBirthday={deleteBirthday}
+              />
+            ))}
+            <Text>Cumpleaños pasados: </Text>
+            {pasatBirthday.map((item, index) => (
+              <Birthday
+                key={index}
+                birthday={item}
+                deleteBirthday={deleteBirthday}
+              />
+            ))}
+          </ScrollView>
+        </>
       ) : (
         <AddBirthday
           user={user}
