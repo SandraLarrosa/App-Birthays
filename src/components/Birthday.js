@@ -11,8 +11,12 @@ export default function Birthday(props) {
 
   const infoDay = () => {
     if (birthday.days === 0) {
-      Alert.alert(`Hoy es el cumpleaños de ${birthday.name}`);
-      return <Text style={styles.days}>¡¡¡Hoy es su cumpleaños!!!</Text>;
+      Alert.alert(`¡¡Hoy es el cumpleaños de ${birthday.name}!!`);
+      return (
+        <>
+          <Text style={styles.days}>¡¡¡Hoy es su cumpleaños!!!</Text>
+        </>
+      );
     } else {
       const days = -birthday.days;
       return (
