@@ -30,7 +30,7 @@ export default function Birthday(props) {
           ? styles.actual
           : styles.current,
       ]}>
-      <Text>
+      <Text style={styles.name}>
         {birthday.name} {birthday.lastName}
       </Text>
       {pasat ? <Text style={styles.days}>Pasado</Text> : infoDay()}
@@ -48,11 +48,13 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 15,
   },
-  current: {backgroundColor: '#1ae1f2'},
-  pasat: {backgroundColor: '#820000'},
-  actual: {backgroundColor: '#559204'},
+  current: {backgroundColor: '#efee9d'},
+  pasat: {backgroundColor: '#c060a1'},
+  actual: {backgroundColor: '#ffa299'},
   days: {
     color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   textCurrent: {
     backgroundColor: '#fff',
@@ -60,5 +62,9 @@ const styles = StyleSheet.create({
     width: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  name: {
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });

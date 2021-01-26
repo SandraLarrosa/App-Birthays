@@ -49,7 +49,7 @@ export default function RegisterForm(props) {
     <>
       <TextInput
         placeholder="Correo electrónico"
-        placeholderTextColor="#969696"
+        placeholderTextColor="white"
         style={[styles.input, formError.email && styles.error]}
         keyboardType="email-address"
         onChange={(e) => setFormData({...formData, email: e.nativeEvent.text})}
@@ -57,7 +57,7 @@ export default function RegisterForm(props) {
       <TextInput
         style={[styles.input, formError.password && styles.error]}
         placeholder="Contraseña"
-        placeholderTextColor="#969696"
+        placeholderTextColor="white"
         secureTextEntry={true}
         onChange={(e) =>
           setFormData({...formData, password: e.nativeEvent.text})
@@ -66,7 +66,7 @@ export default function RegisterForm(props) {
       <TextInput
         style={[styles.input, formError.repeatPassword && styles.error]}
         placeholder="Repetir Contraseña"
-        placeholderTextColor="#969696"
+        placeholderTextColor="white"
         secureTextEntry={true}
         onChange={(e) =>
           setFormData({...formData, repeatPassword: e.nativeEvent.text})
@@ -92,18 +92,18 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    color: 'white',
+    color: '#200f21',
     width: '80%',
     marginBottom: 25,
-    backgroundColor: '#1E3040',
+    backgroundColor: '#625261',
     paddingHorizontal: 20,
     borderRadius: 50,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#1E3040',
+    borderColor: '#625261',
   },
   error: {
-    borderColor: 'white',
+    borderColor: '#8f384d',
     backgroundColor: '#a9294f',
   },
   login: {

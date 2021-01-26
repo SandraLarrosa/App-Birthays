@@ -38,18 +38,19 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   viewClose: {
-    backgroundColor: '#820000',
+    backgroundColor: '#ffba93',
     borderRadius: 50,
     paddingVertical: 10,
     paddingHorizontal: 30,
   },
   text: {
     fontSize: 16,
-    color: 'white',
+    color: '#200f21',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   viewAdd: {
-    backgroundColor: '#1ea1f2',
+    backgroundColor: '#c3aed6',
     borderRadius: 50,
     paddingVertical: 10,
     paddingHorizontal: 30,

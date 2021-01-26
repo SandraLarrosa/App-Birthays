@@ -79,13 +79,13 @@ export default function AddBirthday(props) {
         <TextInput
           style={[styles.input, formError.name && styles.error]}
           placeholder="Nombre"
-          placeholderTextColor="#969696"
+          placeholderTextColor="white"
           onChange={(e) => onChange(e, 'name')}
         />
         <TextInput
           style={[styles.input, formError.lastName && styles.error]}
           placeholder="Apellidos"
-          placeholderTextColor="#969696"
+          placeholderTextColor="white"
           onChange={(e) => onChange(e, 'lastName')}
         />
         <View
@@ -96,7 +96,7 @@ export default function AddBirthday(props) {
           ]}>
           <Text
             style={{
-              color: formData.dateBirth ? 'white' : '#969696',
+              color: formData.dateBirth ? '#200f21' : 'white',
               fontSize: 18,
             }}
             onPress={showDatePicker}>
@@ -128,14 +128,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    color: 'white',
+    color: '#200f21',
     width: '80%',
     marginBottom: 25,
-    backgroundColor: '#1e3040',
+    backgroundColor: '#625261',
     paddingHorizontal: 20,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#1e3040',
+    borderColor: '#625261',
     borderRadius: 50,
   },
   datePicker: {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   error: {
-    borderColor: 'white',
+    borderColor: '#8f384d',
     backgroundColor: '#a9294f',
   },
 });

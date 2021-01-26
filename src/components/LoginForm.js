@@ -48,14 +48,14 @@ export default function LoginForm(props) {
       <TextInput
         style={[styles.input, formError.email && styles.error]}
         placeholder="Correo electrónico"
-        placeholderTextColor="#969696"
+        placeholderTextColor="white"
         keyboardType="email-address"
         onChange={(e) => onChange(e, 'email')}
       />
       <TextInput
         style={[styles.input, formError.password && styles.error]}
         placeholder="Contraseña"
-        placeholderTextColor="#969696"
+        placeholderTextColor="white"
         secureTextEntry={true}
         onChange={(e) => onChange(e, 'password')}
       />
@@ -78,15 +78,15 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    color: 'white',
+    color: '#200f21',
     width: '80%',
     marginBottom: 25,
-    backgroundColor: '#1E3040',
+    backgroundColor: '#625261',
     paddingHorizontal: 20,
     borderRadius: 50,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: '#1E3040',
+    borderColor: '#625261',
   },
   register: {
     flex: 1,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   error: {
-    borderColor: 'white',
+    borderColor: '#8f384d',
     backgroundColor: '#a9294f',
   },
 });
