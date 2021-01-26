@@ -123,9 +123,7 @@ export default function ListBirthday(props) {
                       deleteBirthday={deleteBirthday}
                     />
                   ))}
-                  <Text style={styles.titleBirthdays}>
-                    Cumpleaños pasados:{' '}
-                  </Text>
+                  <Text style={styles.titleBirthdays}>Cumpleaños pasados:</Text>
                   {pasatBirthday.map((item, index) => (
                     <Birthday
                       key={index}
