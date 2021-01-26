@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  Image,
+} from 'react-native';
 import moment from 'moment';
 
 export default function Birthday(props) {
@@ -7,14 +14,17 @@ export default function Birthday(props) {
   const pasat = birthday.days > 0 ? true : false;
 
   const dateBirthFormat = moment(birthday.dateBirth).format('L');
-  console.log(dateBirthFormat);
 
   const infoDay = () => {
     if (birthday.days === 0) {
-      Alert.alert(`¡¡Hoy es el cumpleaños de ${birthday.name}!!`);
+      Alert.alert('¡¡HOY CUMPLE AÑOS!!', `Felicita a ${birthday.name}`);
       return (
         <>
-          <Text style={styles.days}>¡¡¡Hoy es su cumpleaños!!!</Text>
+          <Image
+            style={styles.logo}
+            source={require('../assets/icon-gift.png')}
+          />
+          <Text style={styles.days}>¡Hoy es su cumpleaños!</Text>
         </>
       );
     } else {
@@ -90,5 +100,9 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  logo: {
+    width: 50,
+    height: 50,
   },
 });
