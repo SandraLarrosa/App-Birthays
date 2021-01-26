@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, ScrollView, Alert, Text} from 'react-native';
+import {StyleSheet, View, ScrollView, Alert, Text, Image} from 'react-native';
 import 'firebase/firestore';
 
 import moment from 'moment';
@@ -17,6 +17,7 @@ export default function ListBirthday(props) {
   const [pasatBirthday, setPasatBirthday] = useState([]);
   const [reloadData, setReloadData] = useState(false);
 
+  let birthdayEmpty;
   useEffect(() => {
     setBirthday([]);
     setPasatBirthday([]);
@@ -32,6 +33,7 @@ export default function ListBirthday(props) {
         });
         formData(itemsArray);
       });
+    birthdayEmpty = birthday.length === 0;
     setReloadData(false);
   }, [reloadData]);
 
@@ -95,8 +97,6 @@ export default function ListBirthday(props) {
     );
   };
 
-  const birthdayEmpty = birthday.length === 0;
-
   return (
     <>
       {birthdayEmpty ? (
@@ -111,6 +111,10 @@ export default function ListBirthday(props) {
             {showList ? (
               <>
                 <ScrollView style={styles.scrollView}>
+                  <Image
+                    style={styles.imageHeader}
+                    source={require('../assets/partyBirthday.png')}
+                  />
                   <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
                   {birthday.map((item, index) => (
                     <Birthday
@@ -154,6 +158,11 @@ const styles = StyleSheet.create({
   scrollView: {
     marginBottom: 50,
     width: '100%',
+  },
+  imageHeader: {
+    width: '100%',
+    height: 280,
+    marginTop: 10,
   },
   titleBirthdays: {
     color: 'white',
