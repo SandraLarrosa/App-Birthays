@@ -11,33 +11,20 @@ import moment from 'moment';
 
 export default function Birthday(props) {
   const {birthday, deleteBirthday} = props;
-  const pasat = birthday.days > 0 ? true : false;
-
+  const pasatBirthday = birthday.days > 0 ? true : false;
+  const todayBirthday = birthday.days === 0;
   const dateBirthFormat = moment(birthday.dateBirth).format('L');
 
   const infoDay = () => {
-    if (birthday.days === 0) {
-      Alert.alert('¡¡HOY CUMPLE AÑOS!!', `Felicita a ${birthday.name}`, [
-        {
-          text: 'Gracias',
-        },
-      ]);
-      return (
-        <>
-          <Image
-            style={styles.logo}
-            source={require('../assets/icon-gift.png')}
-          />
-          <Text style={styles.days}>¡Hoy es su cumpleaños!</Text>
-        </>
-      );
+    if (todayBirthday) {
+      return <Text style={styles.days}>¡CUMPLEAÑOS!</Text>;
     } else {
       const days = -birthday.days;
       return (
         <>
           <View style={styles.textCurrent}>
             <Text style={styles.daysLeft}>
-              Faltan: {days} {days === 1 ? 'Día' : 'Días'}
+              {days === 1 ? `Falta: ${days} día` : `Faltan: ${days} días`}
             </Text>
             <Text style={styles.dayBirth}>{dateBirthFormat}</Text>
           </View>
@@ -51,16 +38,28 @@ export default function Birthday(props) {
       onPress={() => deleteBirthday(birthday)}
       style={[
         styles.card,
-        pasat
+        pasatBirthday
           ? styles.pasat
-          : birthday.days === 0
+          : todayBirthday
           ? styles.actual
           : styles.current,
       ]}>
+      {todayBirthday ? (
+        <Image
+          style={styles.logo}
+          source={require('../assets/icon-gift.png')}
+        />
+      ) : (
+        console.log('No es su cumpleaños')
+      )}
       <Text style={styles.name}>
         {birthday.name} {birthday.lastName}
       </Text>
-      {pasat ? <Text style={styles.days}>{dateBirthFormat}</Text> : infoDay()}
+      {pasatBirthday ? (
+        <Text style={styles.days}>{dateBirthFormat}</Text>
+      ) : (
+        infoDay()
+      )}
     </TouchableOpacity>
   );
 }

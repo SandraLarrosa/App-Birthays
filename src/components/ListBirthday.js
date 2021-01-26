@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, ScrollView, Alert, Text} from 'react-native';
+import 'firebase/firestore';
+
 import moment from 'moment';
 import ActionBar from './ActionBar';
 import AddBirthday from './AddBirthday';
 import firebase from '../utils/firebase';
-import 'firebase/firestore';
 import Birthday from './Birthday';
 
 const db = firebase.firestore(firebase);
@@ -94,38 +95,54 @@ export default function ListBirthday(props) {
     );
   };
 
+  const birthdayEmpty = birthday.length === 0;
+
   return (
-    <View style={styles.container}>
-      {showList ? (
-        <>
-          <ScrollView style={styles.scrollView}>
-            <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
-            {birthday.map((item, index) => (
-              <Birthday
-                key={index}
-                birthday={item}
-                deleteBirthday={deleteBirthday}
-              />
-            ))}
-            <Text style={styles.titleBirthdays}>Cumpleaños pasados: </Text>
-            {pasatBirthday.map((item, index) => (
-              <Birthday
-                key={index}
-                birthday={item}
-                deleteBirthday={deleteBirthday}
-              />
-            ))}
-          </ScrollView>
-        </>
-      ) : (
+    <>
+      {birthdayEmpty ? (
         <AddBirthday
           user={user}
           setShowList={setShowList}
           setReloadData={setReloadData}
         />
+      ) : (
+        <>
+          <View style={styles.container}>
+            {showList ? (
+              <>
+                <ScrollView style={styles.scrollView}>
+                  <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
+                  {birthday.map((item, index) => (
+                    <Birthday
+                      key={index}
+                      birthday={item}
+                      deleteBirthday={deleteBirthday}
+                    />
+                  ))}
+                  <Text style={styles.titleBirthdays}>
+                    Cumpleaños pasados:{' '}
+                  </Text>
+                  {pasatBirthday.map((item, index) => (
+                    <Birthday
+                      key={index}
+                      birthday={item}
+                      deleteBirthday={deleteBirthday}
+                    />
+                  ))}
+                </ScrollView>
+              </>
+            ) : (
+              <AddBirthday
+                user={user}
+                setShowList={setShowList}
+                setReloadData={setReloadData}
+              />
+            )}
+            <ActionBar setShowList={setShowList} showList={showList} />
+          </View>
+        </>
       )}
-      <ActionBar setShowList={setShowList} showList={showList} />
-    </View>
+    </>
   );
 }
 
@@ -144,5 +161,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  progress: {
+    margin: 10,
   },
 });

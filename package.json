@@ -18,7 +18,8 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
-    "react-native-modal-datetime-picker": "^9.1.0"
+    "react-native-modal-datetime-picker": "^9.1.0",
+    "react-native-progress": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
