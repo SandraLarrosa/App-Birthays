@@ -16,9 +16,7 @@ export default function Birthday(props) {
   const dateBirthFormat = moment(birthday.dateBirth).format('L');
 
   const infoDay = () => {
-    if (todayBirthday) {
-      return <Text style={styles.days}>¡CUMPLEAÑOS!</Text>;
-    } else {
+    if (!todayBirthday) {
       const days = -birthday.days;
       return (
         <>
@@ -44,15 +42,16 @@ export default function Birthday(props) {
           ? styles.actual
           : styles.current,
       ]}>
-      {todayBirthday ? (
-        <Image
-          style={styles.logo}
-          source={require('../assets/icon-gift.png')}
-        />
-      ) : (
-        console.log('No es su cumpleaños')
+      {todayBirthday && (
+        <>
+          <Text style={styles.birthday}>¡CUMPLEAÑOS!</Text>
+          <Image
+            style={styles.logo}
+            source={require('../assets/icon-gift.png')}
+          />
+        </>
       )}
-      <Text style={styles.name}>
+      <Text style={[styles.name, todayBirthday && styles.nameBirthday]}>
         {birthday.name} {birthday.lastName}
       </Text>
       {pasatBirthday ? (
@@ -74,9 +73,17 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 15,
   },
-  current: {backgroundColor: '#efee9d'},
+  current: {backgroundColor: '#a2d0c1'},
   pasat: {backgroundColor: '#c060a1'},
-  actual: {backgroundColor: '#ffa299'},
+  actual: {
+    backgroundColor: '#ffa299',
+    height: 150,
+    flexDirection: 'column',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    textAlign: 'center',
+  },
   days: {
     color: 'white',
     fontWeight: 'bold',
@@ -93,7 +100,7 @@ const styles = StyleSheet.create({
     padding: 1,
   },
   textCurrent: {
-    backgroundColor: '#f4a548',
+    backgroundColor: '#eff7e1',
     borderRadius: 20,
     width: 150,
     height: 50,
@@ -104,8 +111,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  nameBirthday: {
+    fontSize: 18,
+  },
   logo: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
+  },
+  birthday: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
