@@ -107,6 +107,14 @@ export default function ListBirthday(props) {
     );
   };
 
+  const renderCurrentBirthdays = (birthday) => {
+    return birthday.map((item, index) => {
+      return (
+        <Birthday key={index} birthday={item} deleteBirthday={deleteBirthday} />
+      );
+    });
+  };
+
   return (
     <>
       {listBirthdayEmpty ? (
@@ -122,13 +130,7 @@ export default function ListBirthday(props) {
                     source={require('../assets/images/partyBirthday.png')}
                   />
                   <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
-                  {birthday.map((item, index) => (
-                    <Birthday
-                      key={index}
-                      birthday={item}
-                      deleteBirthday={deleteBirthday}
-                    />
-                  ))}
+                  {renderCurrentBirthdays(birthday)}
                   <Text style={styles.titleBirthdays}>Cumpleaños pasados:</Text>
                   {pasatBirthday.map((item, index) => (
                     <Birthday
