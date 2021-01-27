@@ -41,11 +41,11 @@ export default function AddBirthday(props) {
     hideDatePicker();
   };
 
-  const onChange = (e, type) => {
+  const setFormDataOnChange = (e, type) => {
     setFormData({...formData, [type]: e.nativeEvent.text});
   };
 
-  const onSubmit = () => {
+  const validationFormData = () => {
     let nameIsWrong = !formData.name;
     let lastNameIsWrong = !formData.lastName;
     let dateIsWrong = !formData.dateBirth;
@@ -73,6 +73,12 @@ export default function AddBirthday(props) {
     }
   };
 
+  const textInputDatePicker = () => {
+    return formData.dateBirth
+      ? moment(formData.dateBirth).format('LL')
+      : 'Fecha de Nacimiento';
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -80,13 +86,13 @@ export default function AddBirthday(props) {
           style={[styles.input, formError.name && styles.error]}
           placeholder="Nombre"
           placeholderTextColor="white"
-          onChange={(e) => onChange(e, 'name')}
+          onChange={(e) => setFormDataOnChange(e, 'name')}
         />
         <TextInput
           style={[styles.input, formError.lastName && styles.error]}
           placeholder="Apellidos"
           placeholderTextColor="white"
-          onChange={(e) => onChange(e, 'lastName')}
+          onChange={(e) => setFormDataOnChange(e, 'lastName')}
         />
         <View
           style={[
@@ -100,12 +106,10 @@ export default function AddBirthday(props) {
               fontSize: 18,
             }}
             onPress={showDatePicker}>
-            {formData.dateBirth
-              ? moment(formData.dateBirth).format('LL')
-              : 'Fecha de Nacimiento'}
+            {textInputDatePicker()}
           </Text>
         </View>
-        <TouchableOpacity onPress={onSubmit}>
+        <TouchableOpacity onPress={validationFormData}>
           <Text style={styles.addButton}>Crear Cumpleaños</Text>
         </TouchableOpacity>
       </View>
