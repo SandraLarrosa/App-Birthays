@@ -24,7 +24,10 @@ export default function LoginForm(props) {
       password: passwordIsWrong,
     };
     setFormError(errors);
+    singInUser(errors);
+  };
 
+  const singInUser = (errors) => {
     if (!errors.email && !errors.password) {
       firebase
         .auth()
