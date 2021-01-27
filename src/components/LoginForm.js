@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   StyleSheet,
   Text,
@@ -16,7 +15,7 @@ export default function LoginForm(props) {
   const [formData, setFormData] = useState({email: '', password: ''});
   const [formError, setFormError] = useState({});
 
-  const login = () => {
+  const validationFormData = () => {
     let emailIsWrong = !formData.email || !validateEmail(formData.email);
     let passwordIsWrong = !formData.password;
 
@@ -40,7 +39,7 @@ export default function LoginForm(props) {
     }
   };
 
-  const onChange = (e, type) => {
+  const setFormDataOnChange = (e, type) => {
     setFormData({...formData, [type]: e.nativeEvent.text});
   };
   return (
@@ -50,16 +49,16 @@ export default function LoginForm(props) {
         placeholder="Correo electrónico"
         placeholderTextColor="white"
         keyboardType="email-address"
-        onChange={(e) => onChange(e, 'email')}
+        onChange={(e) => setFormDataOnChange(e, 'email')}
       />
       <TextInput
         style={[styles.input, formError.password && styles.error]}
         placeholder="Contraseña"
         placeholderTextColor="white"
         secureTextEntry={true}
-        onChange={(e) => onChange(e, 'password')}
+        onChange={(e) => setFormDataOnChange(e, 'password')}
       />
-      <TouchableOpacity onPress={login}>
+      <TouchableOpacity onPress={validationFormData}>
         <Text style={styles.btnText}>Iniciar Sesión</Text>
       </TouchableOpacity>
       <View style={styles.register}>
