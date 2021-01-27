@@ -57,7 +57,10 @@ export default function AddBirthday(props) {
     };
 
     setFormError(errors);
+    addBirthdayDataBase(errors);
+  };
 
+  const addBirthdayDataBase = (errors) => {
     if (!errors.name && !errors.lastName && !errors.dateBirth) {
       const data = formData;
       data.dateBirth.setYear(0);
