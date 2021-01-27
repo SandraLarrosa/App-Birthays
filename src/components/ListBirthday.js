@@ -107,7 +107,7 @@ export default function ListBirthday(props) {
     );
   };
 
-  const renderCurrentBirthdays = (birthday) => {
+  const renderCurrentBirthdays = () => {
     return birthday.map((item, index) => {
       return (
         <Birthday key={index} birthday={item} deleteBirthday={deleteBirthday} />
@@ -115,39 +115,41 @@ export default function ListBirthday(props) {
     });
   };
 
-  const renderPastBirthdays = (birthday) => {
+  const renderPastBirthdays = () => {
     return pasatBirthday.map((item, index) => {
       return (
         <Birthday key={index} birthday={item} deleteBirthday={deleteBirthday} />
       );
     });
   };
+
+  const showAllListBirthdays = () => {
+    if (showList) {
+      return (
+        <ScrollView style={styles.scrollView}>
+          <Image
+            style={styles.imageHeader}
+            source={require('../assets/images/partyBirthday.png')}
+          />
+          <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
+          {renderCurrentBirthdays()}
+          <Text style={styles.titleBirthdays}>Cumpleaños pasados:</Text>
+          {renderPastBirthdays()}
+        </ScrollView>
+      );
+    } else {
+      return renderComponentAddBirthday();
+    }
+  };
   return (
     <>
       {listBirthdayEmpty ? (
         renderComponentAddBirthday()
       ) : (
-        <>
-          <View style={styles.container}>
-            {showList ? (
-              <>
-                <ScrollView style={styles.scrollView}>
-                  <Image
-                    style={styles.imageHeader}
-                    source={require('../assets/images/partyBirthday.png')}
-                  />
-                  <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
-                  {renderCurrentBirthdays(birthday)}
-                  <Text style={styles.titleBirthdays}>Cumpleaños pasados:</Text>
-                  {renderPastBirthdays(birthday)}
-                </ScrollView>
-              </>
-            ) : (
-              renderComponentAddBirthday()
-            )}
-            <ActionBar setShowList={setShowList} showList={showList} />
-          </View>
-        </>
+        <View style={styles.container}>
+          {showAllListBirthdays()}
+          <ActionBar setShowList={setShowList} showList={showList} />
+        </View>
       )}
     </>
   );
