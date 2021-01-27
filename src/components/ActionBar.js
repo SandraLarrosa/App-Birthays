@@ -25,6 +25,10 @@ export default function ActionBar(props) {
     );
   };
 
+  const changeTextButtonAddDate = () => {
+    return showList ? 'Nueva Fecha' : 'Cancelar';
+  };
+
   return (
     <View style={styles.viewFooter}>
       <View style={styles.viewClose}>
@@ -34,7 +38,7 @@ export default function ActionBar(props) {
       </View>
       <View style={styles.viewAdd}>
         <Text style={styles.text} onPress={() => setShowList(!showList)}>
-          {showList ? 'Nueva Fecha' : 'Cancelar'}
+          {changeTextButtonAddDate()}
         </Text>
       </View>
     </View>
