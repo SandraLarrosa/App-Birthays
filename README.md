@@ -21,7 +21,7 @@ Está hecha con el curso de udemy de "React Native: Crea aplicaciones móviles r
   
 <div display="flex">
     <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/initApp.png">
-    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorEmptyLogin.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorEmpyLogin.png">
     <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorUserNotFound.png">
 </div>
 
@@ -44,7 +44,7 @@ Está hecha con el curso de udemy de "React Native: Crea aplicaciones móviles r
 
 <div display="flex">
     <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/addBirthday.png">
-    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/selecDate.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/selectDate.png">
 </div>
 
 - Pulsando sobre cualquier cumpleaños, nos muestra un alert preguntando si queremos eliminar el cumpleaños seleccionado. Al pulsar 'Si', lo elimina de la base de datos.
