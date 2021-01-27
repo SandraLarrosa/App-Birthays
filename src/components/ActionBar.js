@@ -18,7 +18,7 @@ export default function ActionBar(props) {
       </View>
       <View style={styles.viewAdd}>
         <Text style={styles.text} onPress={() => setShowList(!showList)}>
-          {showList ? 'Nueva Fecha' : 'Cancelar Fecha'}
+          {showList ? 'Nueva Fecha' : 'Cancelar'}
         </Text>
       </View>
     </View>
