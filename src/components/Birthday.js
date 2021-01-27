@@ -42,7 +42,7 @@ export default function Birthday(props) {
         <>
           <Image
             style={styles.logo}
-            source={require('../assets/icon-gift.png')}
+            source={require('../assets/images/icon-gift.png')}
           />
           <Text style={styles.birthday}>HOY ES EL CUMPLEAÑOS DE:</Text>
         </>

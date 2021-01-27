@@ -113,7 +113,7 @@ export default function ListBirthday(props) {
                 <ScrollView style={styles.scrollView}>
                   <Image
                     style={styles.imageHeader}
-                    source={require('../assets/partyBirthday.png')}
+                    source={require('../assets/images/partyBirthday.png')}
                   />
                   <Text style={styles.titleBirthdays}>Cumpleaños: </Text>
                   {birthday.map((item, index) => (
