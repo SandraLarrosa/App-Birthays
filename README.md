@@ -20,37 +20,37 @@ Está hecha con el curso de udemy de "React Native: Crea aplicaciones móviles r
 - Inicio de la aplicación con un formulario de login, con validacion de errores si algún campo se encuentra vacío y comprobando si el usuario que se está intentando conectar está registrado anteriormente, mostrando un alert avisando de usuario no encontrado.
   
 <div display="flex">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/initApp.png">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/errorEmptyLogin.png">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/errorUserNotFound.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/initApp.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorEmptyLogin.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorUserNotFound.png">
 </div>
 
 - Al pulsar el botón de Registro, te lleva a un formulario para poder registrarte como usuario, con validacion de errores si algún campo se encuentra vacío. 
 
 <div display="flex">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/registerForm.png">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/errorFormRegister.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/registerForm.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/errorFormRegister.png">
 </div>
 
 - Al acceder con un usuario registrado o creando un nuevo usuario, nos lleva a la página principal donde nos muestra la lista de cumpleaños que tenemos guardados posteriormente, si accedemos por primera vez, nos muestra una lista vacia. Además, tenemos una action barcon un botón para cerrar sesión y otro para añadir una nueva fecha.
 
 <div display="flex">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/listBirthdays.png">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/listBirthdays2.png">
-        <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/closeSession.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/listBirthdays.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/listBirthdays2.png">
+        <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/closeSession.png">
 </div>
 
 - Pulsando el botón 'Nueva Fecha' nos lleva a un formulario nuevo para añadir el nombre y el apellido de la persona que queremos añadir a la lista de cumpleaños, además al seleccionar en fecha de nacimiento se despliega un calendario para poder seleccionar la fecha.
 
 <div display="flex">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/addBirthday.png">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/selecDate.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/addBirthday.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/selecDate.png">
 </div>
 
 - Pulsando sobre cualquier cumpleaños, nos muestra un alert preguntando si queremos eliminar el cumpleaños seleccionado. Al pulsar 'Si', lo elimina de la base de datos.
 
 <div display="flex">
-    <img src="https://github.com/SandraLarrosa/Cotizador-de-Prestamos/blob/master/src/assets/images/appbirthdays/deleteBirthday.png">
+    <img src="https://github.com/SandraLarrosa/App-Birthays/blob/master/src/assets/images/appbirthdays/deleteBirthday.png">
 </div>
 
 
