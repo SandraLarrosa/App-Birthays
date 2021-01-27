@@ -1,18 +1,34 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Alert} from 'react-native';
 import firebase from '../utils/firebase';
 
 export default function ActionBar(props) {
   const {showList, setShowList} = props;
 
   const buttonLogOut = () => {
-    firebase.auth().signOut();
+    Alert.alert(
+      'Cerrar sesión',
+      '¿Quieres cerrar la sesión?',
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+        },
+        {
+          text: 'Sí',
+          onPress: () => {
+            firebase.auth().signOut();
+          },
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
     <View style={styles.viewFooter}>
       <View style={styles.viewClose}>
-        <Text style={styles.text} onPress={buttonLogOut}>
+        <Text style={styles.text} onPress={() => buttonLogOut()}>
           Cerrar Sesión
         </Text>
       </View>
