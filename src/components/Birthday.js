@@ -8,7 +8,7 @@ export default function Birthday(props) {
   const todayBirthday = birthday.days === 0;
   const dateBirthFormat = moment(birthday.dateBirth).format('L');
 
-  const infoDay = () => {
+  const showDays = () => {
     if (!todayBirthday) {
       const days = -birthday.days;
       return (
@@ -22,6 +22,34 @@ export default function Birthday(props) {
         </>
       );
     }
+  };
+
+  const printNames = () => {
+    return (
+      <Text style={[styles.name, todayBirthday && styles.nameBirthday]}>
+        {birthday.name} {birthday.lastName}
+      </Text>
+    );
+  };
+  const printDateBirthOrDays = () => {
+    return pasatBirthday ? (
+      <Text style={styles.days}>{dateBirthFormat}</Text>
+    ) : (
+      showDays()
+    );
+  };
+  const printTodayBirthday = () => {
+    return (
+      todayBirthday && (
+        <>
+          <Image
+            style={styles.logo}
+            source={require('../assets/images/icon-gift.png')}
+          />
+          <Text style={styles.birthday}>HOY ES EL CUMPLEAÑOS DE:</Text>
+        </>
+      )
+    );
   };
 
   const styleCardBirthays = () => {
@@ -38,23 +66,9 @@ export default function Birthday(props) {
     <TouchableOpacity
       onPress={() => deleteBirthday(birthday)}
       style={[styles.card, styleCardBirthays()]}>
-      {todayBirthday && (
-        <>
-          <Image
-            style={styles.logo}
-            source={require('../assets/images/icon-gift.png')}
-          />
-          <Text style={styles.birthday}>HOY ES EL CUMPLEAÑOS DE:</Text>
-        </>
-      )}
-      <Text style={[styles.name, todayBirthday && styles.nameBirthday]}>
-        {birthday.name} {birthday.lastName}
-      </Text>
-      {pasatBirthday ? (
-        <Text style={styles.days}>{dateBirthFormat}</Text>
-      ) : (
-        infoDay()
-      )}
+      {printTodayBirthday()}
+      {printNames()}
+      {printDateBirthOrDays()}
     </TouchableOpacity>
   );
 }
