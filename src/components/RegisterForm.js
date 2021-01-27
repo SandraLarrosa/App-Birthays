@@ -18,7 +18,7 @@ export default function RegisterForm(props) {
   });
   const [formError, setFormError] = useState({});
 
-  const register = () => {
+  const validationFormData = () => {
     let emailIsWrong = !formData.email || !validateEmail(formData.email);
     let passwordIsWrong = !formData.password || formData.password.length < 6;
     let passWordsAreWrong =
@@ -30,7 +30,10 @@ export default function RegisterForm(props) {
       repeatPassword: passwordIsWrong || passWordsAreWrong,
     };
     setFormError(errors);
+    createUser(errors);
+  };
 
+  const createUser = (errors) => {
     if (!errors.email && !errors.password && !errors.repeatPassword) {
       firebase
         .auth()
@@ -72,7 +75,7 @@ export default function RegisterForm(props) {
           setFormData({...formData, repeatPassword: e.nativeEvent.text})
         }
       />
-      <TouchableOpacity onPress={register}>
+      <TouchableOpacity onPress={validationFormData}>
         <Text style={styles.btnText}>Regístrate</Text>
       </TouchableOpacity>
 
