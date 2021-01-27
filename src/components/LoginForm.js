@@ -55,7 +55,11 @@ export default function LoginForm(props) {
         onChange={(e) => setFormDataOnChange(e, 'email')}
       />
       <TextInput
-        style={[styles.input, formError.password && styles.error]}
+        style={[
+          styles.input,
+          styles.marginBottom,
+          formError.password && styles.error,
+        ]}
         placeholder="Contraseña"
         placeholderTextColor="white"
         secureTextEntry={true}
@@ -64,19 +68,24 @@ export default function LoginForm(props) {
       <TouchableOpacity onPress={validationFormData}>
         <Text style={styles.btnText}>Iniciar Sesión</Text>
       </TouchableOpacity>
-      <View style={styles.register}>
-        <TouchableOpacity onPress={changeForm}>
-          <Text style={styles.btnText}>Regístrate</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={changeForm}>
+        <Text style={[styles.btnText, styles.textColor]}>Regístrate</Text>
+      </TouchableOpacity>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  textColor: {
+    color: '#89beb3',
+  },
+  marginBottom: {
+    marginBottom: 20,
+  },
   btnText: {
     color: 'white',
-    fontSize: 18,
+    marginBottom: 50,
+    fontSize: 20,
   },
   input: {
     height: 50,
@@ -89,11 +98,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#625261',
-  },
-  register: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 30,
   },
   error: {
     borderColor: '#8f384d',

@@ -67,7 +67,11 @@ export default function RegisterForm(props) {
         }
       />
       <TextInput
-        style={[styles.input, formError.repeatPassword && styles.error]}
+        style={[
+          styles.input,
+          styles.marginBottom,
+          formError.repeatPassword && styles.error,
+        ]}
         placeholder="Repetir Contraseña"
         placeholderTextColor="white"
         secureTextEntry={true}
@@ -79,19 +83,24 @@ export default function RegisterForm(props) {
         <Text style={styles.btnText}>Regístrate</Text>
       </TouchableOpacity>
 
-      <View style={styles.login}>
-        <TouchableOpacity onPress={changeForm}>
-          <Text style={styles.btnText}>Iniciar Sesión</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={changeForm}>
+        <Text style={[styles.btnText, styles.textColor]}>Iniciar Sesión</Text>
+      </TouchableOpacity>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  textColor: {
+    color: '#89beb3',
+  },
+  marginBottom: {
+    marginBottom: 20,
+  },
   btnText: {
     color: 'white',
-    fontSize: 18,
+    marginBottom: 50,
+    fontSize: 20,
   },
   input: {
     height: 50,
@@ -108,10 +117,5 @@ const styles = StyleSheet.create({
   error: {
     borderColor: '#8f384d',
     backgroundColor: '#a9294f',
-  },
-  login: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 30,
   },
 });
