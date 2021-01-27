@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: '120%',
-    height: 240,
+    height: 320,
     marginTop: 50,
-    marginBottom: 30,
+    marginBottom: 10,
   },
 });
