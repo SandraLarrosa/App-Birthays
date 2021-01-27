@@ -97,14 +97,20 @@ export default function ListBirthday(props) {
     );
   };
 
+  const renderComponentAddBirthday = () => {
+    return (
+      <AddBirthday
+        user={user}
+        setShowList={setShowList}
+        setReloadData={setReloadData}
+      />
+    );
+  };
+
   return (
     <>
       {listBirthdayEmpty ? (
-        <AddBirthday
-          user={user}
-          setShowList={setShowList}
-          setReloadData={setReloadData}
-        />
+        renderComponentAddBirthday()
       ) : (
         <>
           <View style={styles.container}>
@@ -134,11 +140,7 @@ export default function ListBirthday(props) {
                 </ScrollView>
               </>
             ) : (
-              <AddBirthday
-                user={user}
-                setShowList={setShowList}
-                setReloadData={setReloadData}
-              />
+              renderComponentAddBirthday()
             )}
             <ActionBar setShowList={setShowList} showList={showList} />
           </View>
